@@ -1,8 +1,8 @@
 from Node import *
+import pickle
 
-goal = Node([0, 1, 2, 3]) # Goal node
 root = Node([0, 0, 0, 0]) # Create a root node
-depth = goal.getSize() # depth of tree
+depth = root.getSize() # depth of tree
 branchingFactor = pow(2, depth) # branching factor of each node
 
 for i in range(0, branchingFactor):
@@ -23,4 +23,5 @@ for i in range(0, root.getBranchSize()):
             for m in range(0, branchingFactor):
                 root.branch[i].branch[j].branch[k].addBranch(Node([i, j, k, m]))
 
-print(root.branch[10].branch[5].branch[15].getData())
+with open('data.tree', 'wb') as data_file:
+    pickle.dump(root, data_file)
